@@ -391,6 +391,9 @@
                     <div class="container-fluid">
 
                         <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                            <div class="card-body" id="genreButtonsContainer">
+                                <!-- Genre buttons will be dynamically generated here -->
+                            </div>
                         </asp:ContentPlaceHolder>
 
                     </div>
