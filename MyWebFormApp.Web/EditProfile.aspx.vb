@@ -61,5 +61,33 @@ Public Class EditProfile
         lblMessage.Visible = True
     End Sub
 
+    Protected Sub btnDeleteProfile_Click(ByVal sender As Object, ByVal e As EventArgs) Handles btnDeleteProfile.Click
+        Try
+            ' Get the user ID from the session
+            Dim userId As Integer = Convert.ToInt32(Session("UserID"))
+
+            ' Get the connection string from the web.config file
+            Dim connectionString As String = ConfigurationManager.ConnectionStrings("MyDbConnectionString").ConnectionString
+
+            ' Create an instance of the BLL
+            Dim userBLL As New UserBLL(connectionString)
+
+            ' Call the DeleteUser method to delete the user
+            userBLL.DeleteUser(userId)
+
+            Session.Abandon()
+
+            ' Optionally, redirect the user to a different page or show a message
+            Response.Redirect("Login.aspx")
+        Catch ex As Exception
+            ' Log the exception details
+            ' You can log to a file, database, or any logging framework
+            ' For simplicity, we'll use Response.Write to output the error to the page
+            Response.Write("An error occurred while deleting the user: " & ex.Message)
+        End Try
+    End Sub
+
+
+
 
 End Class

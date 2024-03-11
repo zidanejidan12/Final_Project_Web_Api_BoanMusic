@@ -27,6 +27,7 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             background-color: #282828;
+            text-align: center; /* Center the contents horizontally */
         }
 
             /* Style the input fields */
@@ -34,7 +35,7 @@
             .login-container input[type=password],
             .login-container input[type=email],
             .login-container input[type=date] {
-                width: 100%;
+                width: calc(100% - 16px); /* Adjust for padding and border */
                 padding: 8px;
                 font-size: 16px;
                 border-radius: 5px;
@@ -42,25 +43,27 @@
                 margin-bottom: 10px;
                 background-color: #333;
                 color: #fff;
+                box-sizing: border-box; /* Include padding and border in width calculation */
             }
 
             /* Style the login button */
             .login-container input[type=submit],
             .login-container #btnRegister {
-                width: 100%;
-                padding: 8px 20px;
-                font-size: 16px;
+                width: calc(100% - 40px); /* Reduce the width */
+                padding: 6px 16px; /* Adjust padding */
+                font-size: 14px; /* Adjust font size */
                 border-radius: 5px;
                 border: none;
                 background-color: #4CAF50; /* Change the background color */
                 color: white;
                 cursor: pointer;
+                margin-top: 10px; /* Adjust margin */
             }
 
             /* Style the registration button */
             .login-container #btnRegister {
                 background-color: #3498db; /* Change the background color */
-                margin-top: 10px;
+                margin-top: 10px; /* Adjust margin */
             }
     </style>
 </head>

@@ -33,6 +33,8 @@ Public Class ConfirmSubscription
         ' Call the method to purchase premium subscription from BLL
         premiumSubscriptionBLL.PurchasePremiumSubscription(userID, premiumFeatureID, subscriptionPlanID)
 
+        Session("UserType") = "premium"
+
         ' Redirect the user to a success page
         Response.Redirect("PremiumPage.aspx")
     End Sub

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="vb" AutoEventWireup="false" CodeBehind="EditProfile.aspx.vb" Inherits="MyWebFormApp.Web.EditProfile" %>
+﻿<%@ Page Language="vb" AutoEventWireup="true" CodeBehind="EditProfile.aspx.vb" Inherits="MyWebFormApp.Web.EditProfile" %>
 
 <!DOCTYPE html>
 
@@ -79,6 +79,8 @@
 
             <asp:Button ID="btnUpdateProfile" runat="server" Text="Update Profile" OnClick="btnUpdateProfile_Click" />
             <asp:Label ID="lblMessage" runat="server" Text="" ForeColor="Green" Visible="false"></asp:Label>
+
+            <asp:Button ID="btnDeleteProfile" runat="server" Text="Delete Account" OnClick="btnDeleteProfile_Click" CssClass="btn btn-danger" />
         </div>
     </form>
 </body>
