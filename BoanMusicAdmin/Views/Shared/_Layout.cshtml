@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - BoanMusic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Your custom CSS styles to mimic SoundCloud */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+        
+        #header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+        
+        #footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        
+        #main-content {
+            padding: 20px;
+        }
+
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-bar {
+            padding: 8px;
+            border-radius: 20px;
+            border: none;
+            width: 300px;
+        }
+
+        .track-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .track {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .track img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .track-title {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .track-artist {
+            color: #777;
+        }
+
+        .audio-player {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+        }
+
+        .audio-player audio {
+            width: 80%;
+        }
+
+        .audio-player-controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        /* Style for logout button */
+        .logout-button {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .logout-button:hover {
+            text-decoration: underline;
+        }
+
+        .profile-button {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .profile-button:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="header" style="cursor: pointer;" onclick="redirectToHome()">
+    <h1>BoanMusic</h1>
+</div>
+
+
+    @if (!Context.Request.Path.StartsWithSegments("/user/login") && !string.Equals(Context.Request.Path, "/", StringComparison.OrdinalIgnoreCase))
+    {
+        <div class="navbar">
+            <div>
+                <form method="post" action="@Url.Action("Search", "Track")">
+                    <input type="text" name="searchQuery" class="search-bar" placeholder="Search...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+            <div>   
+                <span id="profile" class="profile-button">Profile, @User.Identity.Name</span>
+
+                <span id="logout" class="logout-button"><i class="fas fa-sign-out-alt"></i> Logout</span>
+            </div>
+        </div>
+    }
+
+    <div id="main-content">
+        @RenderBody()
+    </div>
+
+    <div id="footer">
+        <p>&copy; 2024 BoanMusic</p>
+    </div>
+
+    <!-- Your JavaScript code if necessary -->
+    @if (!Context.Request.Path.StartsWithSegments("/user/login") && !string.Equals(Context.Request.Path, "/", StringComparison.OrdinalIgnoreCase))
+    {
+        <script>
+            document.getElementById("logout").addEventListener("click", function() {
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "/user/logout");
+                document.body.appendChild(form);
+                form.submit();
+            });
+        </script>
+    }
+
+    <script>
+    function redirectToHome() {
+        window.location.href = '/home/index';
+    }
+    </script>
+
+    <script>
+        document.getElementById("profile").addEventListener("click", function() {
+            window.location.href = "/user/profile";
+        });
+    </script>
+
+</body>
+</html>

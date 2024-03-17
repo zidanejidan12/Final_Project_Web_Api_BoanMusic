@@ -133,14 +133,14 @@ namespace BoanMusicApp.DAL
                 while (reader.Read())
                 {
                     Track track = new Track();
-                    track.TrackID = Convert.ToInt32(reader["Track_ID"]);
+                    track.Track_ID = Convert.ToInt32(reader["Track_ID"]);
                     track.Name = reader["TrackName"].ToString();
                     track.ArtistName = reader["ArtistName"].ToString();
 
                     // Check for DBNull for Image column to handle null values
                     if (reader["Image"] != DBNull.Value)
                     {
-                        track.Image = (byte[])reader["Image"];
+                        track.TrackImage = (byte[])reader["Image"];
                     }
 
                     tracks.Add(track);

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BoanMusicApp.BO;
 
 public interface ITrackDAL
 {

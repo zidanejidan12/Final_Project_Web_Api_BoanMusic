@@ -13,8 +13,7 @@ public class TrackDAL : ITrackDAL
 
     public TrackDAL(string connectionString)
     {
-        // Retrieve the connection string from web.config
-        this.connectionString = ConfigurationManager.ConnectionStrings["MyDbConnectionString"].ConnectionString;
+        this.connectionString = connectionString;
     }
 
     public void AddNewTrack(Track track)
@@ -70,6 +69,14 @@ public class TrackDAL : ITrackDAL
         return tracks;
     }
 
+    public Track GetTrackById(int trackId)
+        {
+            using (IDbConnection db = new SqlConnection(connectionString))
+            {
+                return db.QueryFirstOrDefault<Track>("GetTrackById", new { TrackId = trackId }, commandType: CommandType.StoredProcedure);
+            }
+        }
+
     public List<Track> GetTracks()
     {
         List<Track> tracks = new List<Track>();
@@ -86,11 +93,11 @@ public class TrackDAL : ITrackDAL
                 while (reader.Read())
                 {
                     Track track = new Track();
-                    track.TrackID = Convert.ToInt32(reader["Track_ID"]);
+                    track.Track_ID = Convert.ToInt32(reader["Track_ID"]);
                     track.Name = reader["TrackName"].ToString();
                     track.Duration = Convert.ToInt32(reader["Duration"]);
                     track.Genre = reader["Genre"].ToString();
-                    track.Image = reader["TrackImage"] as byte[];
+                    track.TrackImage = reader["TrackImage"] as byte[];
                     track.ArtistName = reader["ArtistName"].ToString();
                     track.AlbumName = reader["AlbumName"].ToString();
 
@@ -129,13 +136,13 @@ public class TrackDAL : ITrackDAL
                         {
                             Track track = new Track
                             {
-                                TrackID = Convert.ToInt32(reader["Track_ID"]),
+                                Track_ID = Convert.ToInt32(reader["Track_ID"]),
                                 ArtistID = Convert.ToInt32(reader["Artist_ID"]),
                                 AlbumID = reader["Album_ID"] == DBNull.Value ? null : (int?)reader["Album_ID"],
                                 Name = reader["Name"].ToString(),
                                 Duration = Convert.ToInt32(reader["Duration"]),
                                 Genre = reader["Genre"].ToString(),
-                                Image = reader["Image"] == DBNull.Value ? null : (byte[])reader["Image"],
+                                TrackImage = reader["Image"] == DBNull.Value ? null : (byte[])reader["Image"],
                                 ArtistName = reader["ArtistName"].ToString(),
                                 AlbumName = reader["AlbumName"] == DBNull.Value ? null : reader["AlbumName"].ToString()
                             };

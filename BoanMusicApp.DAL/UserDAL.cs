@@ -4,7 +4,9 @@ using System.Data.SqlClient;
 using System.Configuration;
 using BoanMusicApp.BO;
 using Dapper;
-using System.Text; // Add this namespace for ConfigurationManager
+using System.Text;
+using System.Collections.Generic;
+using System.Linq; // Add this namespace for ConfigurationManager
 
 public class UserDAL : IUserDAL
 {
@@ -27,6 +29,17 @@ public class UserDAL : IUserDAL
         }
     }
 
+    public List<User> GetUsers()
+    {
+        using (IDbConnection db = new SqlConnection(connectionString))
+        {
+            string query = "SELECT * FROM [Person].[Users]";
+            var users = db.Query<User>(query).ToList();
+
+            return users;
+        }
+    }
+
     public void DeleteUser(int userId)
     {
         using (SqlConnection connection = new SqlConnection(connectionString))
@@ -42,33 +55,45 @@ public class UserDAL : IUserDAL
     }
 
     public void UpdateUser(int userId, string name, string email, DateTime? dateOfBirth, byte[] profileImage, string password)
+{
+    using (SqlConnection connection = new SqlConnection(connectionString))
     {
-        using (SqlConnection connection = new SqlConnection(connectionString))
+        string storedProcedureName = "UpdateUser";
+
+        using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
         {
-            string storedProcedureName = "UpdateUser";
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@UserID", userId);
+            command.Parameters.AddWithValue("@Name", name);
+            command.Parameters.AddWithValue("@Email", email ?? (object)DBNull.Value);
+            command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth ?? (object)DBNull.Value);
 
-            using (SqlCommand command = new SqlCommand(storedProcedureName, connection))
+            // Handle the profileImage parameter
+            if (profileImage != null && profileImage.Length > 0)
             {
-                command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("@UserID", userId);
-                command.Parameters.AddWithValue("@Name", name);
-                command.Parameters.AddWithValue("@Email", email ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@ProfileImage", profileImage ?? (object)DBNull.Value);
-                command.Parameters.AddWithValue("@Password", password ?? (object)DBNull.Value);
+                // If profile image data is provided, pass it as SqlParameter of SqlDbType.VarBinary
+                command.Parameters.Add("@ProfileImage", SqlDbType.VarBinary, -1).Value = profileImage;
+            }
+            else
+            {
+                // If no profile image is provided, pass NULL to the database
+                command.Parameters.AddWithValue("@ProfileImage", DBNull.Value);
+            }
 
-                try
-                {
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    // Handle the exception, log, or rethrow if necessary
-                    throw;
-                }
+            command.Parameters.AddWithValue("@Password", password ?? (object)DBNull.Value);
+
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception, log, or rethrow if necessary
+                throw;
             }
         }
+    }
     }
 
     // Method to hash the password string using a secure hashing algorithm (e.g., SHA256)

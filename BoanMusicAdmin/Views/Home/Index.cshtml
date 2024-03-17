@@ -1,0 +1,75 @@
+﻿@model X.PagedList.IPagedList<BoanMusicApp.BO.Track>
+@using X.PagedList.Mvc.Core
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<style>
+    .song-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Center the songs horizontally */
+        padding-bottom: 20px; /* Add some bottom padding to avoid horizontal scroll issues */
+    }
+
+    .song {
+        flex: 0 0 calc(20% - 20px); /* Each song takes up 20% width with spacing */
+        margin: 10px; /* Adjust spacing between songs */
+        text-align: center; /* Center song content */
+    }
+
+    .song img {
+        width: 100px; /* Adjust the width of the album image */
+        height: auto;
+    }
+
+    .song-info {
+        margin-top: 5px; /* Adjust margin for song info */
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row song-list">
+        @foreach (var track in Model)
+{
+    <div class="col-md-6 mb-4 song">
+        <a href="@Url.Action("Details", "Track", new { id = track.Track_ID })" class="card-link">
+            <div class="card h-100">
+                @if (track.TrackImage != null)
+                {
+                    <img src="data:image/jpeg;base64,@Convert.ToBase64String(track.TrackImage)" class="card-img-top" alt="Track Image">
+                }
+                else
+                {
+                    <img src="https://img.freepik.com/free-vector/gradient-album-cover-template_23-2150597431.jpg" class="card-img-top" alt="No Image Available">
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@track.Name</h5>
+                    <p class="card-text">@track.ArtistName</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">@ConvertSecondsToMinutes(track.Duration)</small>
+                </div>
+            </div>
+        </a>
+    </div>
+}
+    </div>
+
+    @if (Model.HasNextPage)
+    {
+        <div class="row justify-content-center mt-4">
+            <a class="btn btn-primary" href="@Url.Action("GetTracks", "Track", new { page = Model.PageNumber + 1 })"></a>
+        </div>
+    }
+</div>
+
+@functions {
+    string ConvertSecondsToMinutes(int totalSeconds)
+    {
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
+        return $"{minutes:00}:{seconds:00} minutes";
+    }
+}

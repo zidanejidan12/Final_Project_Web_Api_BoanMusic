@@ -1,0 +1,105 @@
+@model BoanMusicApp.BO.Track
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Track Details</title>
+    <!-- Include necessary CSS and JS libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Your custom CSS styles -->
+    <style>
+        /* Add your custom CSS styles here */
+        .track-container {
+            text-align: center;
+        }
+        .track-image {
+            width: 250px;
+            height: 250px;
+        }
+        .center-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+    <div class="center-content">
+        <div class="track-container">
+            <!-- Track Image -->
+             @if (Model.TrackImage != null)
+            {
+                <img src="@Model.TrackImage" alt="Track Image" />
+            }
+            else
+            {
+                <img src="https://img.freepik.com/free-vector/gradient-album-cover-template_23-2150597431.jpg" alt="No Track Image Available" class="track-image"/>
+            }
+
+            <!-- Track Name -->
+            <h2>@Model.TrackName</h3>
+
+            <!-- Artist Name -->
+            <h4>@Model.ArtistName</h2>
+
+
+            <!-- Buttons for controls -->
+            <div>
+                <button class="control-button" id="backButton"><i class="fas fa-backward"></i> Back</button>
+                <button class="control-button" id="playPauseButton"><i class="fas fa-play"></i> Play</button>
+                <button class="control-button" id="nextButton"><i class="fas fa-forward"></i> Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Your JavaScript code -->
+   <script>
+    // Define variable to store track ID
+    var currentTrackId = @Model.Track_ID; // Assuming Model.TrackId contains the ID of the current track
+
+    // Add event listener for the back button
+    document.getElementById('backButton').addEventListener('click', function() {
+        // Decrement the current track ID
+        currentTrackId--;
+
+        // If the current track ID is less than 1, redirect to the last track
+        if (currentTrackId < 1) {
+            // Redirect to the last track in the database
+            // Replace '/Track/Last' with your actual route to retrieve the last track
+            window.location.href = '/Track/Details/10';
+        } else {
+            // Redirect to the details page of the previous track
+            window.location.href = '/Track/Details/' + currentTrackId;
+        }
+    });
+
+    // Add event listener for the next button
+    document.getElementById('nextButton').addEventListener('click', function() {
+        // Increment the current track ID
+        currentTrackId++;
+
+        // Check if the next track ID exists in the database
+        // You need to implement logic on the server-side to check for the existence of the next track ID
+        // This is just a placeholder for demonstration
+        var nextTrackExists = true; // Replace this with your actual logic
+
+        if (!nextTrackExists) {
+            // Redirect to the first track in the database
+            // Replace '/Track/First' with your actual route to retrieve the first track
+            window.location.href = '/Track/Details/1';
+        } else {
+            // Redirect to the details page of the next track
+            window.location.href = '/Track/Details/' + currentTrackId;
+        }
+    });
+
+    // Add event listener for the play/pause button (if needed)
+    document.getElementById('playPauseButton').addEventListener('click', function() {
+        // Handle play/pause functionality
+    });
+</script>
+</body>
+</html>

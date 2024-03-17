@@ -14,9 +14,15 @@ namespace BoanMusicApp.BLL
         {
             trackDAL = new TrackDAL(connectionString);
         }
+
         public List<Track> GetTracks()
         {
             return trackDAL.GetTracks();
+        }
+
+        public Track GetTrackById(int trackId)
+        {
+            return trackDAL.GetTrackById(trackId);
         }
 
         public List<Track> SearchTracks(string searchQuery)

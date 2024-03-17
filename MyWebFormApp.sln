@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoanMusicApp.BO", "BoanMusi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoanMusicApp.DAL", "BoanMusicApp.DAL\BoanMusicApp.DAL.csproj", "{023C0D19-148A-4563-BE32-3E79E3D1784F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoanMusicApp.BLL", "BoanMusicApp.BLL\BoanMusicApp.BLL.csproj", "{852C5925-EBCE-4901-99FD-67ABBDB114B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoanMusicApp.BLL", "BoanMusicApp.BLL\BoanMusicApp.BLL.csproj", "{852C5925-EBCE-4901-99FD-67ABBDB114B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoanMusicAdmin", "BoanMusicAdmin\BoanMusicAdmin.csproj", "{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -105,6 +107,26 @@ Global
 		{852C5925-EBCE-4901-99FD-67ABBDB114B9}.Release|x64.Build.0 = Release|Any CPU
 		{852C5925-EBCE-4901-99FD-67ABBDB114B9}.Release|x86.ActiveCfg = Release|Any CPU
 		{852C5925-EBCE-4901-99FD-67ABBDB114B9}.Release|x86.Build.0 = Release|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Debug|ARM.Build.0 = Debug|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Debug|x64.Build.0 = Debug|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Debug|x86.Build.0 = Debug|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|ARM.ActiveCfg = Release|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|ARM.Build.0 = Release|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|ARM64.Build.0 = Release|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|x64.ActiveCfg = Release|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|x64.Build.0 = Release|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|x86.ActiveCfg = Release|Any CPU
+		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
