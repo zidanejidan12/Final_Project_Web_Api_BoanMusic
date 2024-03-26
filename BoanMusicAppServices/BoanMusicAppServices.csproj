@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BoanMusic.BO\BoanMusicApp.BO.csproj" />
+    <ProjectReference Include="..\BoanMusicAdmin\BoanMusicAdmin.csproj" />
+    <ProjectReference Include="..\BoanMusicApp.BLL\BoanMusicApp.BLL.csproj" />
+    <ProjectReference Include="..\BoanMusicApp.DAL\BoanMusicApp.DAL.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -41,7 +41,6 @@
 </form>
 
 <script>
-    // Function to update artist name based on selected artist ID
     $('#artistId').change(function () {
         var artistId = $(this).val();
         $('#artistName').val(artistId ? Model.Artists.find(a => a.Artist_ID === parseInt(artistId)).Name : '');

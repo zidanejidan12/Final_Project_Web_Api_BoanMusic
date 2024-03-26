@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoanMusicApp.DAL", "BoanMus
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoanMusicApp.BLL", "BoanMusicApp.BLL\BoanMusicApp.BLL.csproj", "{852C5925-EBCE-4901-99FD-67ABBDB114B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoanMusicAdmin", "BoanMusicAdmin\BoanMusicAdmin.csproj", "{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoanMusicAdmin", "BoanMusicAdmin\BoanMusicAdmin.csproj", "{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoanMusicAppServices", "BoanMusicAppServices\BoanMusicAppServices.csproj", "{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,6 +129,26 @@ Global
 		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|x64.Build.0 = Release|Any CPU
 		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|x86.ActiveCfg = Release|Any CPU
 		{0F4A4FEB-24B2-44AA-942F-89992DBFAB4B}.Release|x86.Build.0 = Release|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Debug|ARM.Build.0 = Debug|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Debug|ARM64.ActiveCfg = Debug|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Debug|ARM64.Build.0 = Debug|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Debug|x64.Build.0 = Debug|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Debug|x86.Build.0 = Debug|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Release|ARM.ActiveCfg = Release|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Release|ARM.Build.0 = Release|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Release|ARM64.ActiveCfg = Release|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Release|ARM64.Build.0 = Release|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Release|x64.ActiveCfg = Release|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Release|x64.Build.0 = Release|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Release|x86.ActiveCfg = Release|Any CPU
+		{EFAE10A6-4D0B-489B-90D1-15E002FF60E9}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

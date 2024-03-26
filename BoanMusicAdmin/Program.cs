@@ -11,11 +11,18 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Configure the connection string
 var connectionString = builder.Configuration.GetConnectionString("MyDbConnectionString");
+
+// Register BLL services with dependency injection
 builder.Services.AddScoped<UserBLL>(provider => new UserBLL(connectionString));
 builder.Services.AddScoped<TrackBLL>(provider => new TrackBLL(connectionString));
 builder.Services.AddScoped<ArtistBLL>(provider => new ArtistBLL(connectionString));
 
+// Pass the connection string to the PremiumSubscriptionBLL constructor
+builder.Services.AddScoped<PremiumSubscriptionBLL>(provider => new PremiumSubscriptionBLL(connectionString));
+
+// Add authentication services
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(options =>
     {
@@ -39,9 +46,9 @@ app.UseRouting(); // <-- Ensure this is called before authentication and authori
 app.UseAuthentication();
 app.UseAuthorization();
 
+// Map controller routes
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=User}/{action=Login}/{id?}"); // Set the default route to the login page
 
 app.Run();
-

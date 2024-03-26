@@ -1,0 +1,6 @@
+@BoanMusicApp.Service_HostAddress = http://localhost:5288
+
+GET {{BoanMusicApp.Service_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

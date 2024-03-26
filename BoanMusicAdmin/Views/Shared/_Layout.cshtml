@@ -124,13 +124,24 @@
             text-decoration: underline;
         }
 
+        /* Style for subscribe button */
+        .subscribe-button {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .subscribe-button:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
     <div id="header" style="cursor: pointer;" onclick="redirectToHome()">
-    <h1>BoanMusic</h1>
-</div>
-
+        <h1>BoanMusic</h1>
+    </div>
 
     @if (!Context.Request.Path.StartsWithSegments("/user/login") && !string.Equals(Context.Request.Path, "/", StringComparison.OrdinalIgnoreCase))
     {
@@ -142,12 +153,18 @@
                 </form>
             </div>
             <div>   
+                <!-- Subscribe button with JavaScript redirection -->
+                <span id="subscribe" class="subscribe-button">Subscribe</span>
+
+                <!-- Profile button -->
                 <span id="profile" class="profile-button">Profile, @User.Identity.Name</span>
 
+                <!-- Logout button -->
                 <span id="logout" class="logout-button"><i class="fas fa-sign-out-alt"></i> Logout</span>
             </div>
         </div>
     }
+
 
     <div id="main-content">
         @RenderBody()
@@ -158,6 +175,14 @@
     </div>
 
     <!-- Your JavaScript code if necessary -->
+    @if (Context.Request.Path.StartsWithSegments("/user/login"))
+    {
+        <script>
+            // Disable clicking on BoanMusic title when on /user/login page
+            document.getElementById("boanMusicTitle").style.pointerEvents = "none";
+        </script>
+    }
+
     @if (!Context.Request.Path.StartsWithSegments("/user/login") && !string.Equals(Context.Request.Path, "/", StringComparison.OrdinalIgnoreCase))
     {
         <script>
@@ -172,16 +197,22 @@
     }
 
     <script>
-    function redirectToHome() {
-        window.location.href = '/home/index';
-    }
-    </script>
+        function redirectToHome() {
+            window.location.href = '/home/index';
+        }
 
-    <script>
-        document.getElementById("profile").addEventListener("click", function() {
-            window.location.href = "/user/profile";
-        });
-    </script>
+        function redirectToProfile(){
+            window.location.href = '/user/profile';
+        }
+        
+        // Function to handle redirection to the subscription page
+        function redirectToSubscribe() {
+            window.location.href = '/subscribe/purchasesubscription';
+        }
 
+        // Event listener for the Subscribe button
+        document.getElementById("subscribe").addEventListener("click", redirectToSubscribe);
+        document.getElementById("profile").addEventListener("click", redirectToProfile);    
+    </script>
 </body>
 </html>

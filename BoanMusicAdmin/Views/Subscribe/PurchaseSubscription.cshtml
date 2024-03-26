@@ -1,0 +1,85 @@
+@model BoanMusicAdmin.Models.SubscriptionViewModel
+
+@{
+    ViewData["Title"] = "Subscribe";
+}
+
+<style>
+    /* Add your custom CSS styles here */
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-control {
+        width: 100%;
+        max-width: 300px;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .form-control:focus {
+        outline: none;
+        border-color: #007bff;
+    }
+
+    .btn-primary {
+        background-color: #ff5500;
+        border: none;
+        border-radius: 4px;
+        padding: 8px 16px;
+        font-size: 14px;
+        color: #fff;
+        cursor: pointer;
+    }
+
+    .btn-primary:hover {
+        background-color: #ff6933;
+    }
+
+    .alert {
+        margin-top: 15px;
+    }
+</style>
+
+<h2>Subscribe to Premium</h2>
+
+@if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+{
+    <div class="alert alert-danger" role="alert">
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+@if (!string.IsNullOrEmpty(ViewBag.SuccessMessage))
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+<form method="post" asp-action="PurchaseSubscription" asp-controller="Subscribe">
+    <div class="form-group">
+        <label for="subscriptionPlan">Select Subscription Plan:</label>
+        <select class="form-control" name="Subscription_Plan_ID" id="subscriptionPlan" asp-for="Subscription_Plan_ID">
+            <option value="">-- Select Subscription Plan --</option>
+            @foreach (var plan in Model.SubscriptionPlans)
+            {
+                <option value="@plan.Subscription_Plan_ID">@plan.Name - $@plan.Price</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="premiumFeature">Select Premium Feature:</label>
+        <select class="form-control" name="Premium_Feature_ID" id="premiumFeature" asp-for="Premium_Feature_ID">
+            <option value="">-- Select Premium Feature --</option>
+            @foreach (var feature in Model.PremiumFeatures)
+            {
+                <option value="@feature.Premium_Feature_ID">@feature.Name</option>
+            }
+        </select>
+    </div>
+    <input type="hidden" name="UserID" asp-for="UserID" />
+    <button type="submit" class="btn btn-primary">Purchase</button>
+</form>

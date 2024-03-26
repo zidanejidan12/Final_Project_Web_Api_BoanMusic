@@ -11,12 +11,11 @@ public class PremiumSubscriptionDAL
 {
     private string connectionString;
 
-    public PremiumSubscriptionDAL()
+    public PremiumSubscriptionDAL(string connectionString)
     {
-        // Retrieve connection string from web.config
-        connectionString = ConfigurationManager.ConnectionStrings["MyDbConnectionString"].ConnectionString;
+        this.connectionString = connectionString;
     }
-
+    
     public void PurchasePremiumSubscription(int userID, int premiumFeatureID, int subscriptionPlanID)
     {
         using (SqlConnection connection = new SqlConnection(connectionString))

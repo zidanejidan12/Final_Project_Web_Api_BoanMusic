@@ -7,9 +7,9 @@ namespace BoanMusicApp.BLL
     {
         private PremiumSubscriptionDAL premiumSubscriptionDAL;
 
-        public PremiumSubscriptionBLL()
+        public PremiumSubscriptionBLL(string connectionString)
         {
-            premiumSubscriptionDAL = new PremiumSubscriptionDAL();
+            premiumSubscriptionDAL = new PremiumSubscriptionDAL(connectionString);
         }
 
         public void PurchasePremiumSubscription(int userID, int premiumFeatureID, int subscriptionPlanID)

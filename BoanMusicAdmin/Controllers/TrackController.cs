@@ -1,6 +1,7 @@
 using BoanMusicApp.BO;
 using BoanMusicApp.BLL;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using X.PagedList;
 
@@ -23,15 +24,14 @@ namespace BoanMusicApp.Controllers
         {
             const int pageSize = 10;
             int pageNumber = page ?? 1;
-            
+
             List<Track> allTracks = _trackBLL.GetTracks();
             IPagedList<Track> tracks = allTracks.ToPagedList(pageNumber, pageSize);
 
             return View("Index", tracks); // Ensure that the view name matches your Index.cshtml file
         }
 
-
-        [HttpPost("Search")]
+        [HttpGet("Search")]
         public IActionResult Search(string searchQuery, int? page)
         {
             var tracks = _trackBLL.SearchTracks(searchQuery);
@@ -44,6 +44,7 @@ namespace BoanMusicApp.Controllers
             return View(pagedTracks);
         }
 
+        [HttpGet("AddNew")]
         public IActionResult AddNewTrack()
         {
             var viewModel = new ArtistDTO
@@ -52,7 +53,7 @@ namespace BoanMusicApp.Controllers
             };
             return View(viewModel);
         }
-        
+
         [HttpGet("Details/{id}")]
         public IActionResult Details(int id)
         {
@@ -66,8 +67,8 @@ namespace BoanMusicApp.Controllers
             return View(track); // Pass the track object to the Details.cshtml view
         }
 
-        [HttpPost]
-        public IActionResult AddNewTrack(Track track)
+        [HttpPost("AddNew")]
+        public IActionResult AddNewTrackPost(Track track)
         {
             if (ModelState.IsValid)
             {
@@ -83,7 +84,7 @@ namespace BoanMusicApp.Controllers
                 }
             }
             // If ModelState is not valid, return to the same view with validation errors
-            return View(track);
+            return View("AddNew", track);
         }
     }
 }
